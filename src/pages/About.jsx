@@ -3,9 +3,19 @@ import { Link } from 'react-router-dom';
 import gsap from 'gsap';
 import { ArrowUpRight, GraduationCap, MapPin, BookOpen } from 'lucide-react';
 
+const assetImages = import.meta.glob(
+  '../assets/**/*.{jpg,jpeg,png,webp,JPG,JPEG,PNG,WEBP}',
+  { eager: true, import: 'default' }
+);
+
+const bundledPhoto =
+  Object.entries(assetImages).find(([path]) =>
+    /\/(valdes|rayival)\.(jpg|jpeg|png|webp)$/i.test(path)
+  )?.[1] || Object.values(assetImages)[0];
+
 export default function About() {
   const aboutRef = useRef(null);
-  const [imgSrc, setImgSrc] = useState('public/image/valdes.jpg');
+  const [imgSrc, setImgSrc] = useState(bundledPhoto || '/image/valdes.jpg');
   const [imgFailed, setImgFailed] = useState(false);
 
   useEffect(() => {
@@ -24,7 +34,9 @@ export default function About() {
   }, []);
 
   const handleImageError = () => {
-    if (imgSrc === '/image/rayival.jpg') {
+    if (imgSrc === '/image/valdes.jpg') {
+      setImgSrc('/image/rayival.jpg');
+    } else if (imgSrc === '/image/rayival.jpg') {
       setImgSrc('/IMAGE/RAYIVAL.JPG');
     } else {
       setImgFailed(true);
@@ -50,7 +62,6 @@ export default function About() {
 
   return (
     <div ref={aboutRef} className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 sm:pt-14 pb-16">
-      {/* Page Header */}
       <div className="about-stagger flex flex-col sm:flex-row sm:items-end justify-between gap-4 pb-6 border-b border-[#E4E4E0] mb-8">
         <div>
           <span className="font-mono text-xs text-[#0047FF] font-semibold block mb-2">
@@ -66,7 +77,6 @@ export default function About() {
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-        {/* Left Column: Portrait Photo Card & Socials */}
         <div className="about-stagger lg:col-span-5 bg-white border border-[#E4E4E0] rounded-3xl p-6 sm:p-8 shadow-[0_4px_24px_rgb(0,0,0,0.02)]">
           <div className="relative aspect-[4/5] w-full rounded-2xl overflow-hidden bg-[#F8F8F6] border border-[#E4E4E0] mb-6">
             {!imgFailed ? (
@@ -83,7 +93,6 @@ export default function About() {
               </div>
             )}
 
-            {/* Subtle Bottom Caption Badge */}
             <div className="absolute bottom-3 inset-x-3 bg-white/90 backdrop-blur-md border border-[#E4E4E0] rounded-xl px-3.5 py-2 flex items-center justify-between">
               <span className="font-mono text-[11px] font-bold text-[#0C0C0E]">VALDES</span>
               <span className="font-mono text-[10px] text-[#0047FF] font-semibold">INFORMATICS · 25</span>
@@ -126,7 +135,6 @@ export default function About() {
           </div>
         </div>
 
-        {/* Right Column: Academic Dossier & Repository Purpose */}
         <div className="about-stagger lg:col-span-7 space-y-6">
           <div className="bg-white border border-[#E4E4E0] rounded-3xl p-6 sm:p-10 shadow-[0_4px_24px_rgb(0,0,0,0.02)]">
             <div className="flex flex-wrap items-center justify-between gap-2 pb-5 border-b border-[#E4E4E0] mb-6">
@@ -148,7 +156,6 @@ export default function About() {
             </div>
           </div>
 
-          {/* Editorial Note Box */}
           <div className="bg-white border border-[#E4E4E0] rounded-3xl p-6 sm:p-8 flex flex-col sm:flex-row sm:items-center justify-between gap-6">
             <div className="space-y-1.5">
               <span className="font-mono text-[11px] font-semibold text-[#0047FF] block">
