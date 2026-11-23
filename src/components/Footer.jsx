@@ -1,4 +1,5 @@
 import React from 'react';
+import { ArrowUpRight } from 'lucide-react';
 
 export default function Footer() {
   return (
@@ -18,9 +19,16 @@ export default function Footer() {
           </div>
 
           <div className="flex flex-wrap items-center gap-2 font-mono text-[11px]">
-            <span className="bg-[#F8F8F6] border border-[#E4E4E0] text-[#0C0C0E] font-semibold px-3 py-1 rounded-lg">
-              Rayival Dede Saputra
-            </span>
+            <a
+              href="https://rayival.vercel.app"
+              target="_blank"
+              rel="noopener noreferrer"
+              title="Kunjungi Portofolio Rayival Dede Saputra"
+              className="group inline-flex items-center gap-1 bg-[#F8F8F6] hover:bg-[#0C0C0E] border border-[#E4E4E0] hover:border-[#0C0C0E] text-[#0C0C0E] hover:text-white font-semibold px-3 py-1 rounded-lg transition-colors duration-200"
+            >
+              <span>Rayival Dede Saputra</span>
+              <ArrowUpRight className="w-3 h-3 text-[#0047FF] group-hover:text-white transition-colors" />
+            </a>
             <span className="bg-[#F8F8F6] border border-[#E4E4E0] text-[#52525B] px-3 py-1 rounded-lg">
               NIM: 2503010032
             </span>
@@ -32,7 +40,27 @@ export default function Footer() {
 
         <div className="pt-5 flex flex-col sm:flex-row items-center justify-between gap-2 font-mono text-[11px] text-[#71717A]">
           <span>Universitas Perjuangan Tasikmalaya (UNPER)</span>
-          <span>© {new Date().getFullYear()} Rayival Dede Saputra. All rights reserved.</span>
+          <div className="flex flex-wrap items-center gap-2">
+            <span>© {new Date().getFullYear()}</span>
+            <a
+              href="https://rayival.vercel.app"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[#0C0C0E] hover:text-[#0047FF] font-semibold underline decoration-[#E4E4E0] hover:decoration-[#0047FF] underline-offset-4 transition-colors"
+            >
+              Rayival Dede Saputra
+            </a>
+            <span>·</span>
+            <a
+              href="https://rayival.vercel.app"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-0.5 text-[#0047FF] hover:underline font-medium"
+            >
+              <span>rayival.vercel.app</span>
+              <ArrowUpRight className="w-3 h-3" />
+            </a>
+          </div>
         </div>
       </div>
     </footer>
